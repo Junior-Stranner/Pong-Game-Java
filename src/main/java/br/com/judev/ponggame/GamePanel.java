@@ -44,7 +44,10 @@ public class GamePanel extends JPanel implements Runnable{
 
     }
     public  void paint(Graphics g){
-
+       image = createImage(getWidth(),getHeight());
+       graphics = image.getGraphics();
+       draw(graphics);
+       g.drawImage(image,0,0,this);
     }
     public void draw(Graphics g){
 
@@ -52,12 +55,25 @@ public class GamePanel extends JPanel implements Runnable{
     public void move(){
 
     }
-    public void ccheckColission(){
-
+    public void checkColission(){
 
     }
     public void run(){
-
+        long lastTime = System.nanoTime();
+        double amountOfTicks = 60.0;
+        double ns = 1000000000 / amountOfTicks;
+        double delta = 0;
+        while(true){
+            long now = System.nanoTime();
+            delta += (now -lastTime)/ns;
+            if(delta >= 1){
+                move();
+                checkColission();
+                repaint();
+                delta--;
+                System.out.println("Test");
+            }
+        }
 
     }
     public class AL extends KeyAdapter{
