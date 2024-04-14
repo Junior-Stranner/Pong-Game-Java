@@ -1,10 +1,9 @@
 package br.com.judev.ponggame;
 
-import javafx.scene.input.KeyEvent;
-
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.KeyAdapter;
+import java.awt.event.KeyEvent;
 import java.util.Random;
 
 public class GamePanel extends JPanel implements Runnable{
@@ -41,8 +40,8 @@ public class GamePanel extends JPanel implements Runnable{
     }
 
     public void newPaddles(){
-        paddle1 = new Paddle(0,(GAME_HEIGHT/2)-(PADDLE_HEIGHT/2),PADDLE_WIDTH, PADDLE_HEIGHT, 1);
-        paddle2 = new Paddle(GAME_WIDTH-PADDLE_WIDTH,(GAME_HEIGHT/2)-(PADDLE_HEIGHT/2),PADDLE_WIDTH, PADDLE_HEIGHT, 1);
+        paddle1 = new Paddle(0,(GAME_HEIGHT/2)-(PADDLE_HEIGHT/2),PADDLE_WIDTH,PADDLE_HEIGHT,1);
+        paddle2 = new Paddle(GAME_WIDTH-PADDLE_WIDTH,(GAME_HEIGHT/2)-(PADDLE_HEIGHT/2),PADDLE_WIDTH,PADDLE_HEIGHT,2);
 
 
     }
@@ -82,13 +81,13 @@ public class GamePanel extends JPanel implements Runnable{
 
     }
     public class AL extends KeyAdapter{
-        public void keyPressed(KeyEvent e){
+        public void keyPressed(KeyEvent e) {
             paddle1.keyPressed(e);
             paddle2.keyPressed(e);
         }
-        public void keyRealesed(KeyEvent e){
-            paddle1.keyRealesed(e);
-            paddle2.keyPressed(e);
+        public void keyReleased(KeyEvent e) {
+            paddle1.keyReleased(e);
+            paddle2.keyReleased(e);
         }
     }
 
