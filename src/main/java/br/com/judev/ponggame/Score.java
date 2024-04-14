@@ -1,2 +1,13 @@
-package br.com.judev.ponggame;public class Score {
+package br.com.judev.ponggame;
+
+import java.awt.*;
+
+public class Score extends Rectangle{
+    Score(){
+
+    }
+    public void draw(Graphics g){
+
+    }
 }
+
