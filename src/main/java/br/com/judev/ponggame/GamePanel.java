@@ -19,7 +19,7 @@ public class GamePanel extends JPanel implements Runnable{
     Image image;
     Graphics graphics;
     Random random;
-    Paddle paddle;
+    Paddle paddle1;
     Paddle paddle2;
     Ball ball;
     Score score;
@@ -41,6 +41,9 @@ public class GamePanel extends JPanel implements Runnable{
     }
 
     public void newPaddles(){
+        paddle1 = new Paddle(0,(GAME_HEIGHT/2)-(PADDLE_HEIGHT/2),PADDLE_WIDTH, PADDLE_HEIGHT, 1);
+        paddle2 = new Paddle(GAME_WIDTH-PADDLE_WIDTH,(GAME_HEIGHT/2)-(PADDLE_HEIGHT/2),PADDLE_WIDTH, PADDLE_HEIGHT, 1);
+
 
     }
     public  void paint(Graphics g){
@@ -50,7 +53,8 @@ public class GamePanel extends JPanel implements Runnable{
        g.drawImage(image,0,0,this);
     }
     public void draw(Graphics g){
-
+       paddle1.draw(g);
+       paddle2.draw(g);
     }
     public void move(){
 
@@ -59,6 +63,7 @@ public class GamePanel extends JPanel implements Runnable{
 
     }
     public void run(){
+        //game loop
         long lastTime = System.nanoTime();
         double amountOfTicks = 60.0;
         double ns = 1000000000 / amountOfTicks;
@@ -78,12 +83,13 @@ public class GamePanel extends JPanel implements Runnable{
     }
     public class AL extends KeyAdapter{
         public void keyPressed(KeyEvent e){
-
+            paddle1.keyPressed(e);
+            paddle2.keyPressed(e);
         }
         public void keyRealesed(KeyEvent e){
-
+            paddle1.keyRealesed(e);
+            paddle2.keyPressed(e);
         }
     }
-
 
 }
