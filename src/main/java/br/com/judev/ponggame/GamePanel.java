@@ -35,27 +35,26 @@ public class GamePanel extends JPanel implements Runnable{
         gameThread.start();
     }
 
-    public void newBall(){
+    public void newBall() {
         random = new Random();
         ball = new Ball((GAME_WIDTH/2)-(BALL_DIAMETER/2),random.nextInt(GAME_HEIGHT-BALL_DIAMETER),BALL_DIAMETER,BALL_DIAMETER);
     }
-
-    public void newPaddles(){
+    public void newPaddles() {
         paddle1 = new Paddle(0,(GAME_HEIGHT/2)-(PADDLE_HEIGHT/2),PADDLE_WIDTH,PADDLE_HEIGHT,1);
         paddle2 = new Paddle(GAME_WIDTH-PADDLE_WIDTH,(GAME_HEIGHT/2)-(PADDLE_HEIGHT/2),PADDLE_WIDTH,PADDLE_HEIGHT,2);
-
-
     }
-    public  void paint(Graphics g){
-       image = createImage(getWidth(),getHeight());
-       graphics = image.getGraphics();
-       draw(graphics);
-       g.drawImage(image,0,0,this);
+    public void paint(Graphics g) {
+        image = createImage(getWidth(),getHeight());
+        graphics = image.getGraphics();
+        draw(graphics);
+        g.drawImage(image,0,0,this);
     }
-    public void draw(Graphics g){
-       paddle1.draw(g);
-       paddle2.draw(g);
-       ball.draw(g);
+    public void draw(Graphics g) {
+        paddle1.draw(g);
+        paddle2.draw(g);
+        ball.draw(g);
+        score.draw(g);
+        Toolkit.getDefaultToolkit().sync(); // I forgot to add this line of code in the video, it helps with the animation
     }
     public void move(){
         paddle1.move();
